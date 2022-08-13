@@ -179,7 +179,7 @@ Create a Search compound index on geoCode (geo type) and hotelName (autocomplete
 
 ### Q4: Autocompletion on hotel names
 
-Replace <word> by your autocomplete input.
+Replace [word] by your autocomplete input.
 
 ```
 db.hotelSearch.aggregate([
@@ -187,7 +187,7 @@ db.hotelSearch.aggregate([
     $search: {
       "autocomplete": {
         "path": "hotelName",
-        "query": "<word>"
+        "query": "[word]"
       }
     }
   },
