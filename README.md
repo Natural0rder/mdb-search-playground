@@ -73,7 +73,7 @@ db.hotelSearch.aggregate([
     }
   },
   {
-    $limit: 100
+    $limit: 10
   },
   {
     $project: {
