@@ -243,7 +243,7 @@ db.hotelSearch.aggregate([
 ### Q6: Q5 + calculated distances
 
 ```
-             pivot
+              pivot
 score = ------------------
          pivot + distance
 ```
