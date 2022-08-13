@@ -12,7 +12,7 @@ use hotel
 db.hotelSearch.createIndex({ geoCode : "2dsphere", amenityCodes : 1 })
 ```
 
-### Fetch 10 nearest hotels from Roma center with a 1KM radius
+### 10 nearest hotels within a 1 KM radius from Roma center sorted (asc) by calculated spherical distance 
 
 ```
 db.hotelSearch.aggregate([
@@ -32,6 +32,14 @@ db.hotelSearch.aggregate([
   },
   {
     $limit: 10
+  },
+  {
+    $project: {
+      _id: 0,
+      hotelName: 1,
+      propertyId: 1,
+      "dist.calculated": 1
+    }
   }
 ])
 ```
