@@ -6,7 +6,7 @@ Same physical hotel can match multiple documents as they are proposed by differe
 
 ## Classic aggregation pipeline samples
 
-Create a 2dsphere index
+Create a 2dsphere index:
 
 ```
 use hotel
@@ -152,3 +152,29 @@ db.hotelSearch.aggregate([
 
 
 ## $search samples
+
+Create a Search index:
+
+```
+{
+  "mappings": {
+    "dynamic": false,
+    "fields": {
+      "geoCode": {
+        "type": "geo"
+      },
+      "hotelName": [
+        {
+          "foldDiacritics": true,
+          "maxGrams": 15,
+          "minGrams": 2,
+          "tokenization": "edgeGram",
+          "type": "autocomplete"
+        }
+      ]
+    }
+  }
+}
+```
+
+
