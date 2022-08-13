@@ -149,7 +149,7 @@ db.hotelSearch.aggregate([
      }
    }
  ])
-
+ ```
 
 ## $search samples
 
