@@ -153,7 +153,7 @@ db.hotelSearch.aggregate([
 
 ## $search samples
 
-Create a Search index:
+Create a Search compound index on geoCode (geo type) and hotelName (autocomplete type)
 
 ```
 {
@@ -177,4 +177,30 @@ Create a Search index:
 }
 ```
 
+### Q4: Autocompletion on hotel names
 
+Replace <word> by your autocomplete input.
+
+```
+db.hotelSearch.aggregate([
+  {
+    $search: {
+      "autocomplete": {
+        "path": "hotelName",
+        "query": "<word>"
+      }
+    }
+  },
+  {
+    $limit: 10
+  },
+  {
+    $project: {
+      "_id": 0,
+      "hotelName": 1
+    }
+  }
+])
+```
+
+### Q5: 
