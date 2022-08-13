@@ -2,6 +2,7 @@
 # mdb-search-playground
 
 A set of queries to play with aggregate() and $search on a collection that stores hotels.
+Same physical hotel can match multiple documents as they are proposed by different providers (provider identifier = dupeId, provider functional identifier = chainCode + iataCode).
 
 ## Classic aggregation pipeline samples
 
@@ -85,5 +86,69 @@ db.hotelSearch.aggregate([
   }
 ])
 ```
+
+### Q3: Q2 + logical hotels grouped by physical hotel (hotel name, distance from Roma center, amenities)
+
+```
+db.hotelSearch.aggregate([
+   {
+     $geoNear: {
+       near: {
+         type: "Point",
+         coordinates: [
+           12.496366,
+           41.902782
+         ]
+       },
+       distanceField: "dist.calculated",
+       maxDistance: 1000,
+       spherical: true
+     }
+   },
+   {
+     $match: {
+       amenityCodes: {
+         $all: [
+           "RMA.95",
+           "RMA.13"
+         ]
+       }
+     }
+   },
+   {
+     $limit: 100
+   },
+   {
+     $group: {
+       _id: {
+         "physicalHotel": "$dupeId",
+         "distance": "$dist.calculated",
+         "name": "$hotelName",
+         "amenities": "$amenityCodes"
+       },
+       offersCount: {
+         $sum: 1
+       },
+       hotels: {
+         $push: {
+           provider: {
+             $concat: [
+               "$chainCode",
+               "-",
+               "$iataCode"
+             ]
+           },
+           property: "$propertyId"
+         }
+       }
+     }
+   },
+   {
+     $sort: {
+       "_id.distance": 1
+     }
+   }
+ ])
+
 
 ## $search samples
