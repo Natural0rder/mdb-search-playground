@@ -44,7 +44,7 @@ db.hotelSearch.aggregate([
 ])
 ```
 
-### Q2: Q1 + restriction on hotels providing specific amenities
+### Q2: Q1 + restriction on hotels providing all given amenities
 
 ```
 db.hotelSearch.aggregate([
