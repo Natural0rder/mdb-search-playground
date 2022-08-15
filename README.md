@@ -80,7 +80,7 @@ db.hotelSearch.aggregate([
     $limit: 100
   }
 ])
-
+```
 
 ### Q2: Q1 + restriction on hotels providing all given amenities and matching country + zip code
 
