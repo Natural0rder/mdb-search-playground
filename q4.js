@@ -17,3 +17,22 @@ db.hotelSearch.aggregate([
     }
   }
 ])
+
+db.hotelSearch.aggregate([
+  {
+    $search: {
+      "autocomplete": {
+        "path": "hotelName",
+        "query": "dom"
+      }
+    }
+  },
+  {
+    $group: {
+      _id: "$hotelName"
+    }
+  },
+  {
+    $limit: 10
+  }
+])
