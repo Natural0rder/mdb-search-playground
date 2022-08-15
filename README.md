@@ -321,7 +321,7 @@ db.hotelSearch.aggregate([
 ])
 ```
 
-### Q5: $search equivalent with $search
+### Q5: Equivalent with $search
 
 ```
 db.hotelSearch.aggregate([
@@ -336,14 +336,14 @@ db.hotelSearch.aggregate([
               41.902782
             ]
           },
-          "radius": 1000
+          "radius": 10000
         },
         "path": "geoCode"
       }
     }
   },
   {
-    $limit: 10
+    $limit: 100
   },
   {
     $project: {
@@ -378,13 +378,13 @@ db.hotelSearch.aggregate([
             41.902782
           ]
         },
-        "pivot": 1000,
+        "pivot": 10000,
         "path": "geoCode"
       }
     }
   },
   {
-    $limit: 10
+    $limit: 100
   },
   {
     $project: {
@@ -416,7 +416,7 @@ db.hotelSearch.aggregate([
 ])
 ```
 
-### Q7: Hotels within a 1KM radius circle from Roma center with a fuzzy autocompletion on hotel names
+### Q7: Hotels within a 1OKM radius circle from Roma center with a fuzzy autocompletion on hotel names
 
 Replace [word] by your fuzzy autocomplete input.
 
@@ -446,7 +446,7 @@ db.hotelSearch.aggregate([
                     41.902782
                   ]
                 },
-                "radius": 1000
+                "radius": 10000
               },
               "path": "geoCode"
             }
@@ -468,54 +468,54 @@ db.hotelSearch.aggregate([
 ])
 ```
 
-### Q8: 100 first hotels within a 1KM radius circle from Roma center grouped by physical hotel
+### Q8: 100 first hotels within a 10KM radius circle from Roma center grouped by physical hotel
 
 ```
 db.hotelSearch.aggregate([
-  {
-    $search: {
-      "geoWithin": {
-        "circle": {
-          "center": {
-            "type": "Point",
-            "coordinates": [
-              12.496366,
-              41.902782
-            ]
+    {
+      $search: {
+        "geoWithin": {
+          "circle": {
+            "center": {
+              "type": "Point",
+              "coordinates": [
+                12.496366,
+                41.902782
+              ]
+            },
+            "radius": 10000
           },
-          "radius": 1000
-        },
-        "path": "geoCode"
+          "path": "geoCode"
+        }
       }
-    }
-  },
-  {
-    $limit: 100
-  },
-  {
-    $group: {
-      _id: {
-        "physicalHotel": "$dupeId",
-        "distance": "$dist.calculated",
-        "name": "$hotelName",
-        "amenities": "$amenityCodes"
-      },
-      offersCount: {
-        $sum: 1
-      },
-      hotels: {
-        $push: {
-          provider: {
-            $concat: [
-              "$chainCode",
-              "-",
-              "$iataCode"
-            ]
-          },
-          property: "$propertyId"
+    },
+    {
+      $limit: 100
+    },
+    {
+      $group: {
+        _id: {
+          "physicalHotel": "$dupeId",
+          "distance": "$dist.calculated",
+          "name": "$hotelName",
+          "amenities": "$amenityCodes"
+        },
+        offersCount: {
+          $sum: 1
+        },
+        hotels: {
+          $push: {
+            provider: {
+              $concat: [
+                "$chainCode",
+                "-",
+                "$iataCode"
+              ]
+            },
+            property: "$propertyId"
+          }
         }
       }
     }
-  }
-])
+  ])
 ```
