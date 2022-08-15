@@ -62,6 +62,13 @@ Document sample:
 }
 ```
 
+You can unzip hotelSearch.bson.cpgz and restore hotelSearch.bson with mongorestore on your MongoDB instance.
+On MongoDB Atlas:
+
+```
+mongorestore --uri mongodb+srv://<USER>:<PASSWORD>@<FQDN>
+```
+
 ## Classic aggregation pipeline samples
 
 Create a 2dsphere index:
