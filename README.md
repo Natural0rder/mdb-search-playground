@@ -45,6 +45,43 @@ db.hotelSearch.aggregate([
 ])
 ```
 
+With distinct hotel names
+
+```
+db.hotelSearch.aggregate([
+  {
+    $geoNear: {
+      near: {
+        type: "Point",
+        coordinates: [
+          12.496366,
+          41.902782
+        ]
+      },
+      distanceField: "dist.calculated",
+      maxDistance: 10000,
+      spherical: true
+    }
+  },
+  {
+    $group: {
+      _id: {
+        name: "$hotelName",
+        distance: "$dist.calculated"
+      },
+      desc: {
+        $push: {
+          propertyId: "$propertyId"
+        }
+      }
+    }
+  },
+  {
+    $limit: 100
+  }
+])
+
+
 ### Q2: Q1 + restriction on hotels providing all given amenities and matching country + zip code
 
 ```
