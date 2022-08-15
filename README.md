@@ -4,6 +4,62 @@
 A set of queries to play with aggregate() and $search on a collection that stores hotels.
 Same physical hotel can match multiple documents as they are proposed by different providers (provider identifier = dupeId, provider functional identifier = chainCode + iataCode).
 
+Document sample:
+
+```
+{
+  "_id": {
+    "$oid": "62fab34fad0e4b15081bfaa5"
+  },
+  "iataCode": "ZAZ",
+  "propertyId": "XAZAZOLZ",
+  "chainCode": "XA",
+  "geoCode": {
+    "type": "Point",
+    "coordinates": [
+      {
+        "$numberDouble": "12.4247457"
+      },
+      {
+        "$numberDouble": "41.8918075"
+      }
+    ]
+  },
+  "address": {
+    "line1": "94 Via di Torre Rossa",
+    "postalCode": "00165",
+    "countryCode": "IT",
+    "cityName": "ROMA"
+  },
+  "amenityCodes": [
+    "RMA.23",
+    "RMA.49",
+    "RMA.44",
+    "RMA.46",
+    "RMA.50",
+    "RMA.42",
+    "RMA.32",
+    "RMA.13",
+    "RMA.76",
+    "RMA.40",
+    "RMA.64",
+    "RMA.76",
+    "RMA.36",
+    "RMA.82",
+    "RMA.82",
+    "RMA.97"
+  ],
+  "hotelName": "Domus Pacis Torre Rossa Park",
+  "dupeId": {
+    "$numberInt": "128564"
+  },
+  "bestTransportation": {
+    "$numberInt": "0"
+  },
+  "primaryLocation": "ROM"
+}
+```
+
 ## Classic aggregation pipeline samples
 
 Create a 2dsphere index:
