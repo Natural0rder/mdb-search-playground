@@ -62,11 +62,11 @@ Document sample:
 }
 ```
 
-You can unzip hotelSearch.bson.cpgz and restore hotelSearch.bson with mongorestore on your MongoDB instance.
+You can unzip hotelSearch.bson.cpgz and restore hotelSearch.bson with mongorestore (https://www.mongodb.com/docs/database-tools/mongorestore/) on your MongoDB instance.
 On MongoDB Atlas:
 
 ```
-mongorestore --uri mongodb+srv://<USER>:<PASSWORD>@<FQDN>
+mongorestore --uri mongodb+srv://<USER>:<PASSWORD>@<FQDN> /<PATH>/hotelSearch.bson
 ```
 
 ## Classic aggregation pipeline samples
