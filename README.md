@@ -261,6 +261,29 @@ db.hotelSearch.aggregate([
 ])
 ```
 
+With distinct names
+
+```
+db.hotelSearch.aggregate([
+  {
+    $search: {
+      "autocomplete": {
+        "path": "hotelName",
+        "query": "dom"
+      }
+    }
+  },
+  {
+    $group: {
+      _id: "$hotelName"
+    }
+  },
+  {
+    $limit: 10
+  }
+])
+```
+
 ### Q5: $search equivalent with $search
 
 ```
