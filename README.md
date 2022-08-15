@@ -27,12 +27,12 @@ db.hotelSearch.aggregate([
         ]
       },
       distanceField: "dist.calculated",
-      maxDistance: 1000,
+      maxDistance: 10000,
       spherical: true
     }
   },
   {
-    $limit: 10
+    $limit: 100
   },
   {
     $project: {
