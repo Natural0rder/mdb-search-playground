@@ -10,7 +10,7 @@ db.hotelSearch.aggregate([
                 41.902782
               ]
             },
-            "radius": 1000
+            "radius": 10000
           },
           "path": "geoCode"
         }
