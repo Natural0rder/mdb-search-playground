@@ -486,7 +486,7 @@ db.hotelSearch.aggregate([
 ])
 ```
 
-### Q7: Hotels within a 1OKM radius circle from Roma center with a fuzzy autocompletion on hotel names
+### Q7: Hotels within a 10KM radius circle from Roma center with a fuzzy autocompletion on hotel names
 
 Replace [word] by your fuzzy autocomplete input.
 
