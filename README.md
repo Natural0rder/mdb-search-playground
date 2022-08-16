@@ -1,7 +1,7 @@
 
 # mdb-search-playground
 
-A set of queries to play with aggregate() and $search on a collection that stores hotels.
+A set of queries and a dataset to play with aggregate() and $search on a collection that stores hotels.
 - Same physical hotel can match multiple documents as they are proposed by different providers.
 - Provider technical identifier = dupeId.
 - Provider functional identifier = chainCode + iataCode.
