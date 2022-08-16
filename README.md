@@ -78,7 +78,7 @@ use hotel
 db.hotelSearch.createIndex({ geoCode : "2dsphere", "address.countryCode" : 1, "address.postalCode" : 1, amenityCodes : 1 })
 ```
 
-### Q1: 100 nearest hotels within a 10 KM radius from Roma center sorted (asc) by calculated spherical distance 
+### Q1: 100 nearest hotels within a 10 KM radius from Roma center sorted by calculated spherical distance 
 
 ```
 db.hotelSearch.aggregate([
@@ -147,7 +147,7 @@ db.hotelSearch.aggregate([
 ])
 ```
 
-### Q2: Q1 + restriction on hotels providing all given amenities and matching country + zip code
+### Q2: Q1 + restriction on hotels providing all given amenities and matching country + zip codes
 
 ```
 db.hotelSearch.aggregate([
