@@ -75,7 +75,12 @@ Create a compound index:
 
 ```
 use hotel
-db.hotelSearch.createIndex({ geoCode : "2dsphere", "address.countryCode" : 1, "address.postalCode" : 1, amenityCodes : 1 })
+db.hotelSearch.createIndex({
+  geoCode: "2dsphere",
+  "address.countryCode": 1,
+  "address.postalCode": 1,
+  amenityCodes: 1
+})
 ```
 
 ### Q1: 100 nearest hotels within a 10 KM radius from Roma center sorted by calculated spherical distance 
